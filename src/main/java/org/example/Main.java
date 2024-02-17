@@ -46,6 +46,24 @@ public class Main {
         return duplicates;
     }
 
+
+    // WRITE FIRSTNONREPEATINGCHAR METHOD HERE //
+    public static Character firstNonRepeatingChar(String testString){
+        Map<Character, Integer> myHashMap = new HashMap<>();
+
+        char[] charArray = testString.toCharArray();
+
+        for(int i = 0; i < charArray.length; i++){
+            myHashMap.put(charArray[i], myHashMap.getOrDefault(charArray[i], 0) + 1);
+        }
+        for(int i = 0; i < charArray.length; i++){
+            //int a = myHashMap.get(charArray[i]);
+            if(myHashMap.get(charArray[i]) == 1) return charArray[i];
+        }
+        return null;
+    }
+    /////////////////////////////////////////////
+
     ////
     /*
     public static List<Integer> findDuplicates(int[] nums) {
@@ -91,6 +109,18 @@ public class Main {
         List<Integer> duplicates = findDuplicates(nums);
         System.out.println(duplicates);
 
+        System.out.println("---------------------------------");
+        System.out.println(firstNonRepeatingChar("leetcode"));
+        System.out.println(firstNonRepeatingChar("hello"));
+        System.out.println(firstNonRepeatingChar("aabbcc"));
 
+        /*
+            EXPECTED OUTPUT:
+            ----------------
+            l
+            h
+            null
+
+        */
     }
 }
