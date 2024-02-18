@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -64,6 +61,31 @@ public class Main {
     }
     /////////////////////////////////////////////
 
+    // WRITE GROUPANAGRAMS METHOD HERE //
+    public static List<List<String>> groupAnagrams(String[] strings){
+        HashMap<String, List<String>> myHashMap = new HashMap<>();
+
+        for(int i = 0; i < strings.length; i++ ){
+            String tempString = strings[i];
+            char[] charArray = tempString.toCharArray();
+            Arrays.sort(charArray);
+            String canonical = new String(charArray);
+            if(myHashMap.containsKey(canonical)){
+                myHashMap.get(canonical).add(tempString);
+            }else{
+                List<String> group = new ArrayList<>();
+                group.add(tempString);
+                myHashMap.put(canonical, group);
+            }
+        }
+
+
+
+        return new ArrayList<>(myHashMap.values());
+    }
+
+    //////////////////////////////////////
+
     ////
     /*
     public static List<Integer> findDuplicates(int[] nums) {
@@ -122,5 +144,13 @@ public class Main {
             null
 
         */
+
+        System.out.println("1st set:");
+        System.out.println(groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+        System.out.println("\n2nd set:");
+        System.out.println(groupAnagrams(new String[]{"abc", "cba", "bac", "foo", "bar"}));
+
+        System.out.println("\n3rd set:");
+        System.out.println(groupAnagrams(new String[]{"listen", "silent", "triangle", "integral", "garden", "ranged"}));
     }
 }
