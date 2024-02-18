@@ -78,9 +78,6 @@ public class Main {
                 myHashMap.put(canonical, group);
             }
         }
-
-
-
         return new ArrayList<>(myHashMap.values());
     }
 
@@ -104,6 +101,39 @@ public class Main {
     */
 
     ////
+    /////////////////////////////////////////////////////////////
+    // WRITE THE TWOSUM MEHTOD HERE //
+    //    Problem: Given an array of integers nums and a target integer target, find the indices of two numbers
+    //    in the array that add up to the target.
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> myHashMap = new HashMap<>();
+        int[] result = {};
+        //result= new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int complement = target - num;
+            if (myHashMap.containsKey(complement)) {
+                result = new int[]{myHashMap.get(complement), i};
+                return result;
+            } else {
+                myHashMap.put(num, i);
+            }
+        }
+        return result;
+    }
+
+//        for(int i = 0; i < nums.length - 1; i++){
+//            for(int j = 1; j < nums.length; j++ ){
+//                if(nums[i] + nums[j] == target){
+//                    result = new int[]{i,j};
+////                    result[0] = i;
+////                    result[1] = j;
+//                }
+//            }
+//        }
+//        return result;
+//    }
+    //////////////////////////////////////////////////////////////
 
     public static void main(String[] args) {
 
@@ -152,5 +182,26 @@ public class Main {
 
         System.out.println("\n3rd set:");
         System.out.println(groupAnagrams(new String[]{"listen", "silent", "triangle", "integral", "garden", "ranged"}));
+
+        System.out.println(Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9)));
+        System.out.println(Arrays.toString(twoSum(new int[]{3, 2, 4}, 6)));
+        System.out.println(Arrays.toString(twoSum(new int[]{3, 3}, 6)));
+        System.out.println(Arrays.toString(twoSum(new int[]{1, 2, 3, 4, 5}, 10)));
+        System.out.println(Arrays.toString(twoSum(new int[]{1, 2, 3, 4, 5}, 7)));
+        System.out.println(Arrays.toString(twoSum(new int[]{1, 2, 3, 4, 5}, 3)));
+        System.out.println(Arrays.toString(twoSum(new int[]{}, 0)));
+
+        /*
+            EXPECTED OUTPUT:
+            ----------------
+            [0, 1]
+            [1, 2]
+            [0, 1]
+            []
+            [2, 3]
+            [0, 1]
+            []
+
+        */
     }
 }
